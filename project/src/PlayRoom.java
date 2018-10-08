@@ -66,7 +66,6 @@ public class PlayRoom {
 				}
 			}
 		}
-		binaryStr.
 		/*for(i=0;i<32;i++) {
 			System.out.println(input[i][0]+""+input[i][1]+""+input[i][2]+""+input[i][3]+""+input[i][4]);
 		}*/
