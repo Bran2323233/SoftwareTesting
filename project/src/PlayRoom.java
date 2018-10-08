@@ -1,4 +1,9 @@
-package ooadproject;
+
+/**
+ * 
+ * @author Bran
+ *
+ */
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -12,11 +17,14 @@ import javax.swing.JTextField;
 
 public class PlayRoom {
 	
-	public int [][]input;                //维护方向数组
+	/**
+	 * 维护方向数组
+	 */
+	private int [][]input;
 	
-	public int maxTime;
+	private int maxTime;
 
-	public  int minTime;
+	private   int minTime;
 	
 	public int getMaxTime() {          //最大时间
 		return maxTime;
@@ -27,21 +35,29 @@ public class PlayRoom {
 	}
 	
 	public PlayRoom() {
-		input = new int[32][5];       //初始化
+		//初始化
+		input = new int[32][5];       
 		maxTime = 0;
 		minTime = 10000;
 	}
 	
 	public void buildDirections() {
-		int i,b;                                                //设置方向数组
-		for( i=0 ;i<32;i++) {
+		 //设置方向数组
+		int i,b,c,d;           
+		c = 32;
+		d = 5;
+		for( i=0 ;i<c;i++) {
 			char []binaryStr = new char[5];
-			String a = Integer.toBinaryString(i);
-			while(a.length()<5) {
-				a = "0"+ a;
-			}
-			binaryStr = a.toCharArray();
-			for (b=0;b<5;b++) {
+
+			StringBuilder a = new StringBuilder(Integer.toBinaryString(i));
+			StringBuilder sb = new StringBuilder();
+			for(int j=0;j<d-a.toString().length();j++){
+			    sb.append("0");
+            }
+            sb.append(a.toString());
+            binaryStr = sb.toString().toCharArray();
+
+			for (b=0;b<d;b++) {
 				if(binaryStr[b]=='0'){
 					input[i][b]=-1;
 				}
@@ -56,9 +72,12 @@ public class PlayRoom {
 	}
 	
 	public void playGames() {
-		int tmpTime=0;      //将数组读入进游戏并通过多次循环进行多次游戏并选取最大最小时间
-		int i;
-		for(i=0;i<32;i++) {
+	    this.buildDirections();
+		//将数组读入进游戏并通过多次循环进行多次游戏并选取最大最小时间
+		int tmpTime=0;      
+		int i,c;
+		c = 32;
+		for(i=0;i<c;i++) {
 			//System.out.println(input[i][0]+""+input[i][1]+""+input[i][2]+""+input[i][3]+""+input[i][4]);
 			CreepingGame cg = new CreepingGame();
 			tmpTime = cg.playGame(input[i][0],input[i][1],input[i][2],input[i][3],input[i][4]);
@@ -89,6 +108,7 @@ public class PlayRoom {
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jf.setVisible(true);
 		jb.addActionListener(new  ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				PlayRoom pr = new PlayRoom();
 		        pr.buildDirections();
