@@ -46,9 +46,9 @@ public class PlayRoom {
 		int i,b,c,d;           
 		c = 32;
 		d = 5;
+
 		for( i=0 ;i<c;i++) {
 			char []binaryStr = new char[5];
-
 			StringBuilder a = new StringBuilder(Integer.toBinaryString(i));
 			StringBuilder sb = new StringBuilder();
 			for(int j=0;j<d-a.toString().length();j++){
@@ -66,6 +66,7 @@ public class PlayRoom {
 				}
 			}
 		}
+		binaryStr.
 		/*for(i=0;i<32;i++) {
 			System.out.println(input[i][0]+""+input[i][1]+""+input[i][2]+""+input[i][3]+""+input[i][4]);
 		}*/
